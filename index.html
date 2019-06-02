@@ -1,0 +1,161 @@
+<html language="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css" />
+    <meta name="author" content="Selim Saygı <saygiselim@gmail.com>">
+    <title>Video Pixel Processing Demo</title>
+</head>
+
+<body>
+    <header class="row text-center">
+        <h1>Video Pixel Processing Demo</h1>
+    </header>
+    <hr />
+    <div class="row">
+        <div class="col-3 col-adapted">
+            <div class="row text-center">
+                <video id="video"></video>
+            </div>
+            <div class="row text-center">
+                <button id="play-pause-button" class="button" type="button">Play/Pause</button>
+            </div>
+        </div>
+        <div class="col-3 col-adapted">
+            <div class="row text-center">
+                <canvas id="canvas"></canvas>
+            </div>
+            <div class="row" style="min-height: 200px;">
+                <div class="col-1 text-center">
+                    <button type="button" class="button" onclick="setFilterIndex(-1)" title="Previous effect">
+                        <</button>
+                </div>
+
+                <div class="col-4">
+                    <fieldset id="settings-pixelate" class="animated fade-in">
+                        <legend>Pixelate Effect</legend>
+                        <div class="row">
+                            <div class="col-3">
+                                <label class="label">Block size (Min: 1, Max: 20)</label>
+                            </div>
+                            <div class="col-3">
+                                <input class="input pull-right" type="number" min="2" max="20" value="5" onchange="blockSize = +this.value" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <label class="label">Space (Min: 0, Max: 5)</label>
+                            </div>
+                            <div class="col-3">
+                                <input class="input pull-right" type="number" min="0" max="5" value="0" onchange="spaceBetweenBlocks = +this.value" />
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="settings-pointilate" class="animated fade-in" hidden>
+                        <legend>Pointilate Effect</legend>
+                        <div class="row">
+                            <div class="col-3">
+                                <label class="label">Point size (Min: 1, Max: 20)</label>
+                            </div>
+                            <div class="col-3">
+                                <input class="input pull-right" type="number" min="2" max="20" value="5" onchange="pointSize = +this.value" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <label class="label">Space (Min: 0, Max: 5)</label>
+                            </div>
+                            <div class="col-3">
+                                <input class="input pull-right" type="number" min="0" max="5" value="0" onchange="spaceBetweenPoints = +this.value" />
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="settings-grayscale" class="animated fade-in" hidden>
+                        <legend>Grayscale Effect</legend>
+                        <div class="row text-center">
+                            No options
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="settings-gameboy" class="animated fade-in" hidden>
+                        <legend>Gameboy Effect</legend>
+                        <div class="row text-center">
+                            No options
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="settings-lowresscreen" class="animated fade-in" hidden>
+                        <legend>Low Resolution Screen Effect</legend>
+                        <div class="row">
+                            <div class="col-3">
+                                <label class="label">Color Palettes</label>
+                            </div>
+                            <div class="col-3">
+                                <select class="input pull-right" value="0" onchange="selectedColorPalette = +this.value">
+                                    <option value="0">Teletext</option>
+                                    <option value="1">Gameboy</option>
+                                    <option value="2">Black&White</option>
+                                    <option value="3">Vincent Van Gogh</option>
+                                    <option value="4">Material Colors</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <label class="label">Brightness (Min: -255, Max: 255)</label>
+                            </div>
+                            <div class="col-3">
+                                <input class="input pull-right" type="number" min="-255" max="255" value="0" onchange="brightness = +this.value" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <label class="label">Pixel size (Min: 1, Max: 20)</label>
+                            </div>
+                            <div class="col-3">
+                                <input class="input pull-right" type="number" min="2" max="20" value="5" onchange="pixelSize = +this.value" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <label class="label">Space (Min: 0, Max: 5)</label>
+                            </div>
+                            <div class="col-3">
+                                <input class="input pull-right" type="number" min="0" max="5" value="0" onchange="spaceBetweenPixels = +this.value" />
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="col-1 text-center">
+                    <button type="button" class="button" onclick="setFilterIndex(1)" title="Next effect">></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="row text-center">
+        <header>
+            <h3>Available Options</h3>
+        </header>
+        <p id="filters-desc" style="color:orangered; font-weight:bold;">...</p>
+        <footer>
+            You can use arrow buttons or keys to switch between filters
+        </footer>
+    </section>
+    <hr />
+    <footer class="row text-center">
+        <a href="http://www.w3.org/html/logo/">
+            <img src="https://www.w3.org/html/logo/badge/html5-badge-h-css3-device-graphics-multimedia-semantics.png" width="261" height="64"
+                alt="HTML5 Powered with CSS3 / Styling, Device Access, Graphics, 3D &amp; Effects, Multimedia, and Semantics"
+                title="HTML5 Powered with CSS3 / Styling, Device Access, Graphics, 3D &amp; Effects, Multimedia, and Semantics"
+            />
+        </a>
+    </footer>
+</body>
+
+<script src="js/jCanvasPainter.js" type="text/javascript"></script>
+<script src="js/main.js" type="text/javascript"></script>
+
+</html>

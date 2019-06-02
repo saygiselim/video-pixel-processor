@@ -1,0 +1,201 @@
+body,
+html {
+  margin: 0;
+  padding: 10px;
+  background-color: #eee;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Layout Styles */
+
+.row {
+  padding: 5px;
+}
+
+.row:before,
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+[class*="col-"] {
+  float: left;
+  min-height: 1px;
+  width: 16.66%;
+  padding: 5px 0;
+}
+
+.col-1 {
+  width: 16.66%;
+}
+
+.col-2 {
+  width: 33.33%;
+}
+
+.col-3 {
+  width: 50%;
+}
+
+.col-4 {
+  width: 66.66%;
+}
+
+.col-5 {
+  width: 83.33%;
+}
+
+.col-6 {
+  width: 100%;
+}
+
+@media (max-width: 1350px) {
+  [class*="col-adapted"] {
+    width: 100% !important;
+  }
+}
+
+.padding {
+  padding: 5px;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+/* Layout Styles */
+
+/* Text Styles*/
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Text Styles*/
+
+/* Component Styles */
+.label {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px;
+  color: darkslategray;
+}
+
+.input {
+  padding: 5px;
+  font-size: 14px;
+  width: 100%;
+  border: 1px solid #dedede;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: darkslategray;
+}
+
+.input[type="number"] {
+  max-width: 60px;
+  box-shadow: 0px 0px 1px darkslategray;
+}
+
+.input[type="checkbox"] {
+  text-align: center;
+  width: auto;
+}
+
+.button {
+  cursor: pointer;
+  padding: 5px 15px;
+  font-weight: bold;
+  background: #ffffff;
+  background: -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%);
+  background: -webkit-linear-gradient(top, #ffffff 0%, #e5e5e5 100%);
+  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(
+      startColorstr="#ffffff",
+      endColorstr="#e5e5e5",
+      GradientType=0
+    );
+}
+
+hr {
+  margin: 15px 0px;
+  border-color: #fff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: darkslategray;
+}
+
+fieldset {
+  border: 1px solid #ccc;
+  background: #fff;
+}
+
+fieldset,
+label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Component Styles */
+
+/*Other Styles*/
+
+#video {
+  width: 640px;
+  height: 480px;
+  border: 5px solid #444;
+  background: #444;
+}
+
+#canvas {
+  width: 640px;
+  height: 480px;
+  border: 5px solid #444;
+  background: #444;
+}
+
+/*Other Styles*/
+
+/* CSS animations */
+
+.animated {
+  animation-duration: 1s;
+}
+
+.fade-in:not([hidden]) {
+  animation-name: scaleIn;
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* CSS animations */
