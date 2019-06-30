@@ -4,7 +4,7 @@
   // Global variables
   let ctx,
     jcp = new jCanvasPainter(),
-    frameRate = 60, // frames per second
+    frameRate = 30, // frames per second
     filters = [
       'pixelate',
       'pointilate',

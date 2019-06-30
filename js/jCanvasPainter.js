@@ -53,7 +53,6 @@ let jCanvasPainter = function () {
     let sumR = 0, sumG = 0, sumB = 0, pixelCount = 0, imagePart = _ctx.getImageData(startX, startY, endX - startX, endY - startY);
 
     for (let i = 0; i < imagePart.data.length; i += 4) {
-
       sumR += imagePart.data[i];    //Red
       sumG += imagePart.data[i + 1];//Green
       sumB += imagePart.data[i + 2];//Blue
@@ -79,9 +78,7 @@ let jCanvasPainter = function () {
    * @param {number} b2 
    */
   function dist(r1, g1, b1, r2, g2, b2) {
-    return Math.sqrt(
-      (r2 - r1) * (r2 - r1) + (g2 - g1) * (g2 - g1) + (b2 - b1) * (b2 - b1)
-    );
+    return Math.sqrt((r2 - r1) * (r2 - r1) + (g2 - g1) * (g2 - g1) + (b2 - b1) * (b2 - b1));
   }
 
   /**
@@ -109,7 +106,6 @@ let jCanvasPainter = function () {
   }
 
   _filters.pixelate = function (canvas, pixelSize, spaceBetweenPixels) {
-
     // draw image from source before process;
     _ctx.drawImage(_src, 0, 0, _width, _height, 0, 0, _canvas.width, _canvas.height);
 
@@ -120,18 +116,16 @@ let jCanvasPainter = function () {
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, _canvas.width, _canvas.height);
 
-    for (y = pixelSize; y <= _canvas.height; y += pixelSize)
-      for (x = pixelSize; x <= _canvas.width; x += pixelSize) {
+    for (let y = pixelSize; y <= _canvas.height; y += pixelSize)
+      for (let x = pixelSize; x <= _canvas.width; x += pixelSize) {
         let pixel = getPixelAverage(x - pixelSize, x, y - pixelSize, y), actualPixelSize = pixelSize - spaceBetweenPixels;
 
         ctx.fillStyle = "rgb(" + pixel.r + "," + pixel.g + "," + pixel.b + ")";
         ctx.fillRect(x - pixelSize, y - pixelSize, actualPixelSize, actualPixelSize);
-
       }
   };
 
   _filters.pointilate = function (canvas, pixelSize, spaceBetweenPixels) {
-
     // draw image from source before process;
     _ctx.drawImage(_src, 0, 0, _width, _height, 0, 0, _canvas.width, _canvas.height);
 
@@ -161,7 +155,7 @@ let jCanvasPainter = function () {
 
     let imageData = _ctx.getImageData(0, 0, _width, _height);
 
-    for (i = 0; i < imageData.data.length; i += 4) {
+    for (let i = 0; i < imageData.data.length; i += 4) {
       let r = imageData.data[i];
       let g = imageData.data[i + 1];
       let b = imageData.data[i + 2];
@@ -192,7 +186,7 @@ let jCanvasPainter = function () {
 
     let imageData = _ctx.getImageData(0, 0, _width, _height);
 
-    for (i = 0; i < imageData.data.length; i += 4) {
+    for (let i = 0; i < imageData.data.length; i += 4) {
       let r = imageData.data[i];
       let g = imageData.data[i + 1];
       let b = imageData.data[i + 2];
@@ -296,8 +290,8 @@ let jCanvasPainter = function () {
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, _canvas.width, _canvas.height);
 
-    for (y = pixelSize; y <= _canvas.height; y += pixelSize)
-      for (x = pixelSize; x <= _canvas.width; x += pixelSize) {
+    for (let y = pixelSize; y <= _canvas.height; y += pixelSize)
+      for (let x = pixelSize; x <= _canvas.width; x += pixelSize) {
         let pixel = getPixelAverage(x - pixelSize, x, y - pixelSize, y);
         let nc = nearestColor(colorPalettes[selectedColorPalette], pixel.r + brightness, pixel.g + brightness, pixel.b + brightness);
 
